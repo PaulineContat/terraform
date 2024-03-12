@@ -1,7 +1,12 @@
-data "aws_ami" "linux" {
+data "aws_ami" "latest_amazon_linux" {
   most_recent = true
-}
+  owners      = ["amazon"]
 
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*"]
+  }
+}
 data "aws_iam_role" "lab_role" {
   name = "LabInstanceProfile"
 }

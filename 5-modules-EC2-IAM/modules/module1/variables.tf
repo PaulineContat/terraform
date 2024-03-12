@@ -9,3 +9,8 @@ variable "instance_type" {
   type    = string
   default = "t3.nano"
 }
+
+variable "aws_iam_role_name" {
+  type = string
+  default = "LabInstanceProfile"
+}
