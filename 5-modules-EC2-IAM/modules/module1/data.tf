@@ -7,6 +7,3 @@ data "aws_ami" "latest_amazon_linux" {
     values = ["amzn2-ami-hvm-*"]
   }
 }
-data "aws_iam_role" "lab_role" {
-  name = "LabInstanceProfile"
-}
