@@ -10,20 +10,19 @@ resource "aws_lambda_function" "lambda_function" {
 
 resource "aws_iam_role" "iam_for_lambda_with_sns" {
   name               = "lambda-${lower(var.lambda_function_name)}-creation_ec2_topic"
-  assume_role_policy = data.aws_iam_policy_document.lambda_sns_publish_policy.json
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
-# # JSON POLICY - add SNS publish permission
-data "aws_iam_policy_document" "lambda_sns_publish_policy" {
-  statement {
-    effect = "Allow"
-    actions = [
-      "sns:Publish"
-    ]
-    resources = [
-      "arn:aws:sns:*:*:creation_ec2_topic"
-    ]
-  }
+resource "aws_iam_policy" "lambda_sns_publish_policy" {
+  name        = "${var.lambda_function_name}-sns-publish"
+  description = "Permission to publish to the SNS topic from Lambda"
+  policy      = data.aws_iam_policy_document.sns_publish_policy.json
+}
+
+resource "aws_iam_policy_attachment" "attach_sns_publish_to_lambda" {
+  name       = "${var.lambda_function_name}-sns-publish-attachment"
+  roles      = [aws_iam_role.iam_for_lambda_with_sns.name]
+  policy_arn = aws_iam_policy.lambda_sns_publish_policy.arn
 }
 
 # resource "aws_iam_policy" "lambda_sns_publish" {

@@ -7,6 +7,6 @@ resource "aws_instance" "ec2_instance" {
   iam_instance_profile = var.aws_iam_role_name
   user_data = <<-EOF
                   #!/bin/bash
-                  aws lambda invoke --function-name "${lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
+                  aws lambda invoke --function-name "${var.lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
               EOF
 }
