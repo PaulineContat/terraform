@@ -1,5 +1,5 @@
 module "ec2" {
-  source  = "./modules/module1"
+  source  = "./modules/ec2"
   lambda_arn = module.lambda.lambda_function_arn
 }
 
