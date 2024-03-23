@@ -8,5 +8,5 @@ module "lambda" {
 }
 
 module "subscription" {
-  source = "./modules/subscription/"
+  source = "./modules/subscription"
 }

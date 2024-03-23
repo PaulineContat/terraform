@@ -1,13 +1,14 @@
 resource "aws_lambda_function" "lambda_function" {
-  filename         = "lambda_function_payload.zip"
+  filename         = "${path.module}/lambda_function_payload.zip"
   function_name    = var.lambda_function_name
   description      = var.lambda_description
-  role             = aws_iam_role.iam_for_lambda_with_sns.arn
+  // role             = aws_iam_role.iam_for_lambda_with_sns.arn
+  role = "arn:aws:iam::767397848023:role/LabRole"
   handler = format("%s.handler", var.lambda_function_name)
   source_code_hash = filebase64sha256("./modules/lambda/lambda_function_payload.zip")
   runtime          = var.lambda_runtime
 }
-
+/*
 resource "aws_iam_role" "iam_for_lambda_with_sns" {
   name               = "lambda-${lower(var.lambda_function_name)}-creation_ec2_topic"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
@@ -23,7 +24,7 @@ resource "aws_iam_policy_attachment" "attach_sns_publish_to_lambda" {
   name       = "${var.lambda_function_name}-sns-publish-attachment"
   roles      = [aws_iam_role.iam_for_lambda_with_sns.name]
   policy_arn = aws_iam_policy.lambda_sns_publish_policy.arn
-}
+}*/
 
 # resource "aws_iam_policy" "lambda_sns_publish" {
 #   name        = "lambda_sns_publish_policy"
