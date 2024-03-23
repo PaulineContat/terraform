@@ -1,3 +1,1 @@
-module "subscription" {
-  source = "../../subscription/"
-}
+/**/
