@@ -1,3 +1,0 @@
-module "subscription" {
-  source = "."
-}
