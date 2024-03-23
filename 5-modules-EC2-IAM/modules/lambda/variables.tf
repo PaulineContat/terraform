@@ -15,3 +15,9 @@ variable "lambda_runtime" {
   default     = "python3.8"
   description = "Lambda runtime to use for the function."
 }
+
+variable "lambda_role_arn" {
+  type        = string
+  default     = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/LabRole"
+  description = "The ARN of the lambda function"
+}
