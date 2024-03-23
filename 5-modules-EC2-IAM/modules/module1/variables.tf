@@ -14,3 +14,8 @@ variable "aws_iam_role_name" {
   type = string
   default = "LabInstanceProfile"
 }
+
+variable "lambda_arn" {
+  type        = string
+  description = "The ARN of the Lambda function to be invoked"
+}
