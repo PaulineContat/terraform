@@ -3,8 +3,8 @@ resource "aws_lambda_function" "lambda_function" {
   function_name    = var.lambda_function_name
   description      = var.lambda_description
   role             = aws_iam_role.iam_for_lambda_with_sns.arn
-  handler          = var.lambda_function_name + ".handler"
-  source_code_hash = filebase64sha256("lambda_function_payload.zip")
+  handler = format("%s.handler", var.lambda_function_name)
+  source_code_hash = filebase64sha256("./../lambda_function_payload.zip")
   runtime          = var.lambda_runtime
 }
 
