@@ -15,3 +15,8 @@ variable "lambda_runtime" {
   default     = "python3.8"
   description = "Lambda runtime to use for the function."
 }
+
+variable "email" {
+  type = string
+  default = "pauline.contat01@etu.umontpellier.fr"
+}
