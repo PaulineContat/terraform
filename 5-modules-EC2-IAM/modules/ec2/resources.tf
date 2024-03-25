@@ -15,10 +15,8 @@
                   EOF
   }
 
-  resource "aws_cloudwatch_metric" "ec2_launches_metric" {
-    namespace  = "MetricsNamespace"
-    name       = "EC2Launches"
-    unit       = "Count"  
+  resource "aws_cloudwatch_metric_namespace" "metrics_namespace" {
+    name = "MetricsNamespace"
   }
 
   resource "aws_cloudwatch_metric_alarm" "ec2_launches_alarm" {
@@ -26,7 +24,7 @@
     comparison_operator       = "GreaterThanThreshold"
     evaluation_periods        = 1
     metric_name               = "EC2Launches"
-    namespace                 = "MetricsNamespace"
+    namespace                 = aws_cloudwatch_metric_namespace.metrics_namespace.name
     period                    = 30
     statistic                 = "Sum"
     threshold                 = 1
