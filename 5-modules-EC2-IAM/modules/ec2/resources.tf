@@ -10,7 +10,7 @@
     user_data = <<-EOF
                   #!/bin/bash
                   aws lambda invoke --function-name "${var.lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
-                  aws cloudwatch put-metric-data --metric-name EC2Launches --namespace MyCustomMetrics --value 1 --unit Count
+                  aws cloudwatch put-metric-data --metric-name EC2Launches --namespace EC2Namespace --value 1 --unit Count
                   ${each.value.user_data}
                   EOF
   }
