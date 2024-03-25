@@ -29,3 +29,13 @@
     alarm_actions             = [var.sns_topic_arn]
     # datapoints_to_alarm       = 2
   }
+
+  resource "aws_iam_role_policy_attachment" "assume_role" {
+    policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+    role       = aws_iam_role.lambda.name
+  }
+  
+  resource "aws_iam_role" "lambda" {
+    assume_role_policy = data.aws_iam_policy_document.assume_role.json
+    name               = "Use Any Identifier/Name You Want Here For IAM Role"
+  }

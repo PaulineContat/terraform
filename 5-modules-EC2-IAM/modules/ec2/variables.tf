@@ -20,7 +20,6 @@ variable "instances" {
     name            = string
     instance_type   = string
     user_data       = string
-    instance_role   = string
   }))
 }
 
