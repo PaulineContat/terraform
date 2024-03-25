@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 resource "aws_iam_role_policy" "instance_profile_policy" {
   name   = "instance_profile_policy"
-  role   = aws_iam_instance_profile.ec2_instance_profile.name
+  role   = aws_iam_role.instance_profile.name
 
   policy = jsonencode({
     Version = "2012-10-17"
