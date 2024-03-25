@@ -6,7 +6,7 @@
     tags = {
       Name = each.value.name
     }
-    iam_instance_profile = each.value.instance_role
+    iam_instance_profile = each.value.data.assume_role
     user_data = <<-EOF
                   #!/bin/bash
                   aws lambda invoke --function-name "${var.lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
