@@ -13,7 +13,7 @@ data "aws_ami" "latest_amazon_linux" {
     values = ["hvm"]
   }
 }
-
+/*
 data "aws_iam_policy_document" "assume_role" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -23,4 +23,4 @@ data "aws_iam_policy_document" "assume_role" {
       identifiers = ["lambda.amazonaws.com"]
     }
   }
-}
+}*/
