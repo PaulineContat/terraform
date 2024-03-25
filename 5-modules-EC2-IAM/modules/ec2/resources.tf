@@ -6,7 +6,7 @@
     tags = {
       Name = each.value.name
     }
-    iam_instance_profile = each.value.data.assume_role
+    iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
     user_data = <<-EOF
                   #!/bin/bash
                   aws lambda invoke --function-name "${var.lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
@@ -37,5 +37,10 @@
   
   resource "aws_iam_role" "lambda" {
     assume_role_policy = data.aws_iam_policy_document.assume_role.json
-    name               = "Use Any Identifier/Name You Want Here For IAM Role"
+    name               = "LabInstanceProfile"
   }
+  
+  resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2-instance-profile"
+  role = aws_iam_role.lambda.name
+}

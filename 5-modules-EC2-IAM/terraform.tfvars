@@ -13,12 +13,12 @@ instances = {
     name          = "3-ec2-instance"
     instance_type = "t2.micro"
     user_data     = ""
-    instance_role = data.assume_role
   },
   "ec2_instance_4" = {
     name          = "4-ec2-instance"
     instance_type = "t2.micro"
     user_data     = ""
+  },
   "ec2_instance_5" = {
     name          = "5-ec2-instance"
     instance_type = "t2.micro"
