@@ -4,9 +4,9 @@
     ami           = data.aws_ami.latest_amazon_linux.id
     instance_type = each.value.instance_type
     tags = {
-      Name = each.value.instance_name
+      Name = each.value.name
     }
-    iam_instance_profile = each.value.aws_iam_role_name
+    iam_instance_profile = each.value.instance_role
     user_data = <<-EOF
                   #!/bin/bash
                   aws lambda invoke --function-name "${var.lambda_arn}" --payload '{}' /tmp/lambda_invoke_result.txt
