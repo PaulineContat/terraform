@@ -21,7 +21,7 @@
     evaluation_periods        = 1
     metric_name               = "EC2Launches"
     namespace                 = "EC2Namespace"
-    period                    = 60
+    period                    = 30
     statistic                 = "Sum"
     threshold                 = 1
     alarm_description         = "This alarm fires if more than one EC2 instance is launched in 30 seconds"
